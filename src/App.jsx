@@ -4,11 +4,11 @@ import Main from "./components/Main";
 import { useState } from "react";
 import uuid from "react-uuid";
 
-function App() {
+const App = () => {
   const [notes, setNotes] = useState([]);
-  const [activeNote, setActiveNote] = useState([]);
+  const [activeNote, setActiveNote] = useState(false);
 
-  function onAddNote() {
+  const onAddNote = () => {
     const newNote = {
       id: uuid(),
       title: "新ノート",
@@ -16,13 +16,17 @@ function App() {
       modDate: Date.now(),
     };
     setNotes([...notes, newNote]);
-  }
+  };
 
   const onDeleteNote = (id) => {
     const result = notes.filter((note) => {
       return note.id !== id;
     });
     setNotes(result);
+  };
+
+  const getActiveNote = () => {
+    return notes.find((note) => note.id === activeNote);
   };
 
   return (
@@ -34,9 +38,9 @@ function App() {
         activeNote={activeNote}
         setActiveNote={setActiveNote}
       />
-      <Main />
+      <Main activeNote={getActiveNote()} />
     </div>
   );
-}
+};
 
 export default App;

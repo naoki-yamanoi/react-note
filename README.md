@@ -1,8 +1,13 @@
 # 環境構築
+```
 git clone git@github.com:naoki-yamanoi/react-note.git
+
 cd react-note
+
 npm install
+
 npm run dev
+```
 
 # React + Vite
 
